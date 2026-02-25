@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Magnetic Button Hover styles are handled inline in React with GSAP or standard Tailwind hover, 
+     but the sliding background span is defined via utility combinations over `group`. */
+     
+  .btn-magnetic {
+    @apply relative overflow-hidden inline-flex items-center justify-center font-medium transition-transform duration-300 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] hover:scale-[1.03] active:scale-95 z-10;
+  }
+  
+  .btn-magnetic::before {
+    content: '';
+    @apply absolute inset-0 bg-black/10 translate-y-[101%] transition-transform duration-300 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] -z-10 rounded-[inherit];
+  }
+  
+  .btn-magnetic:hover::before {
+    @apply translate-y-0;
+  }
+
+  .glass-card {
+    @apply bg-background/80 backdrop-blur-xl border border-primary/10 shadow-lg rounded-[2rem];
+  }
+}
